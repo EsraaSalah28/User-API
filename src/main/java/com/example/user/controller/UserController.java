@@ -21,9 +21,10 @@ public class UserController {
         User createdUser = userService.createUser(user);
         return new ResponseEntity<User>(createdUser, HttpStatus.CREATED);
     }
+
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUser(@PathVariable String userId,
-                                        @RequestParam(name = "accessToken",required = false) String accessToken) {
+                                        @RequestParam(name = "accessToken", required = false) String accessToken) {
         User user = userService.getUserById(userId, accessToken);
         if (user != null) {
             return new ResponseEntity<>(user, HttpStatus.OK);

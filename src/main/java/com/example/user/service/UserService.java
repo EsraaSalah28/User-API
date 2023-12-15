@@ -37,7 +37,6 @@ public class UserService {
         String accessToken = jwtUtil.generateToken(user.getId(), jwtClaims);
 
 
-
         // Set the JWT Token in the User entity
         user.setAccessToken(accessToken);
 
@@ -50,7 +49,7 @@ public class UserService {
     public User getUserById(String userId, String accessToken) {
         Optional<User> optionalUser = userRepository.findById(String.valueOf(userId));
         if (optionalUser.isPresent()) {
-            if(!optionalUser.get().isMarketingConsent()){
+            if (!optionalUser.get().isMarketingConsent()) {
                 optionalUser.get().setEmail(null);
             }
             return optionalUser.get();
